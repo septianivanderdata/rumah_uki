@@ -1,225 +1,118 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pengelolaan Kinerja 2026 – Bea Cukai Teluk Nibung</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portal Unit Kepatuhan Internal Bea Cukai Teluk Nibung. Akses pelaporan harta kekayaan, pengelolaan kinerja, dan dialog kinerja organisasi.">
+  <meta name="theme-color" content="#101310">
+  <title>Pengelolaan Kinerja – Bea Cukai Teluk Nibung</title>
+  <link rel="stylesheet" href="assets/site.css">
 
-  :root {
-    --primary: #ff385c;
-    --primary-active: #e00b41;
-    --surface: #f7f7f7;
-    --surface-card: #ffffff;
-    --surface-strong: #f2f2f2;
-    --ink: #222222;
-    --muted: #6a6a6a;
-    --border: #e6e6e6;
-    --shadow: 0 30px 80px rgba(34, 34, 34, 0.08);
-    --radius-xl: 32px;
-    --radius-lg: 24px;
-    --radius-md: 18px;
-    --max-width: 1120px;
-  }
-
-  html { scroll-behavior: smooth; }
-  body { background: var(--surface); color: var(--ink); font-family: 'Inter', system-ui, sans-serif; min-height: 100vh; overflow-x: hidden; }
-  img { max-width: 100%; display: block; }
-  a { color: inherit; text-decoration: none; }
-
-  nav {
-    position: fixed;
-    top: 0; left: 50%; transform: translateX(-50%);
-    width: min(100%, calc(var(--max-width) + 4rem));
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 0 2rem;
-    height: 76px;
-    background: rgba(255,255,255,0.92);
-    backdrop-filter: blur(18px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-brand { display: flex; align-items: center; gap: 14px; }
-  .nav-logo { width: 44px; height: 44px; border-radius: 18px; display: flex; align-items: center; justify-content: center; background: var(--primary); color: #fff; font-weight: 700; font-size: 1rem; }
-  .nav-title { font-size: 0.88rem; font-weight: 700; letter-spacing: 0.1em; line-height: 1.2; color: var(--ink); }
-  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
-  .nav-links a { color: var(--muted); font-size: 0.88rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; transition: color .25s; }
-  .nav-links a:hover, .nav-links a.active { color: var(--primary); }
-
-  .page-hero {
-    padding-top: 94px;
-    min-height: 320px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
-  }
-  .page-hero-content { max-width: 760px; padding: 3.5rem 2rem; }
-  .breadcrumb { display: inline-flex; align-items: center; gap: 0.75rem; color: var(--primary); font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700; margin-bottom: 1rem; }
-  .breadcrumb span { color: var(--muted); }
-  .page-title { font-size: clamp(2.25rem, 4vw, 3.8rem); font-weight: 700; color: var(--ink); line-height: 1.05; margin-bottom: 1rem; }
-  .page-divider { width: 70px; height: 3px; background: var(--primary); border-radius: 9999px; margin: 1rem auto; }
-
-  .menu-strip { background: var(--surface-card); padding: 2.5rem 1.5rem; border: 1px solid var(--border); border-radius: var(--radius-xl); box-shadow: var(--shadow); margin: 2rem auto 3rem; max-width: 1000px; }
-  .menu-strip-label { text-align: center; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--primary); margin-bottom: 1.75rem; }
-  .menu-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
-  .menu-btn { display: block; padding: 14px 18px; text-align: center; background: var(--surface); color: var(--ink); border: 1px solid var(--border); border-radius: 20px; font-size: 0.95rem; font-weight: 600; transition: transform .2s ease, border-color .25s ease, background .25s ease; }
-  .menu-btn:hover { background: var(--surface-strong); border-color: var(--primary); transform: translateY(-1px); }
-  .menu-btn .btn-icon { display: block; font-size: 1.3rem; margin-bottom: 0.75rem; }
-
-  .content-area { max-width: 1100px; margin: 0 auto; padding: 2rem 2rem 5rem; }
-  .section-tag { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--primary); border-left: 3px solid var(--primary); padding-left: 1rem; margin-bottom: 1rem; }
-  .content-title { font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 700; color: var(--ink); margin-bottom: 1rem; line-height: 1.05; }
-  .content-desc { font-size: 1rem; color: var(--muted); line-height: 1.75; max-width: 680px; margin-bottom: 2.5rem; }
-
-  .doc-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
-  .doc-card { position: relative; background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 2rem; box-shadow: var(--shadow); transition: transform .25s ease, border-color .25s ease; }
-  .doc-card:hover { transform: translateY(-3px); border-color: rgba(255,56,92,0.2); }
-  .doc-icon { font-size: 1.6rem; margin-bottom: 1rem; color: var(--primary); }
-  .doc-title { font-size: 1.05rem; font-weight: 700; color: var(--ink); margin-bottom: 0.75rem; }
-  .doc-excerpt { font-size: 0.95rem; color: var(--muted); line-height: 1.75; }
-
-  footer { background: var(--surface-card); border-top: 1px solid var(--border); padding: 2.5rem 2rem; }
-  .footer-inner { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 1.75rem; }
-  .footer-brand p { margin-top: 1rem; color: var(--muted); line-height: 1.8; }
-  .footer-col h4 { margin-bottom: 1rem; font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); font-weight: 700; }
-  .footer-col li { font-size: 0.95rem; color: var(--muted); padding: 0.35rem 0; list-style: none; }
-  .footer-bottom { max-width: 1120px; margin: 1.5rem auto 0; padding-top: 1rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; gap: 1rem; color: var(--muted); font-size: 0.82rem; flex-wrap: wrap; }
-
-  @media (max-width: 860px) {
-    .menu-grid { grid-template-columns: 1fr; }
-    .content-area { padding: 2rem 1.5rem 4rem; }
-    nav { padding: 0 1rem; }
-    .nav-links { display: none; }
-  }
-  @media (max-width: 640px) {
-    .page-title { font-size: 2.4rem; }
-    .doc-card { padding: 1.75rem; }
-  }
-</style>
+  <script src="assets/site.js" defer></script>
 </head>
-<body>
- 
-<nav>
-  <a class="nav-brand" href="index.html">
-    <div class="nav-logo">BC</div>
-    <div class="nav-title">Bea Cukai<br>Teluk Nibung</div>
-  </a>
-  <ul class="nav-links">
-    <li><a href="index.html">Beranda</a></li>
-    <li><a href="lhk.html">Laporan Harta Kekayaan</a></li>
-    <li><a href="pengelolaan-kinerja.html" class="active">Pengelolaan Kinerja</a></li>
-    <li><a href="dialog-kinerja.html">Dialog Kinerja Organisasi</a></li>
-  </ul>
-</nav>
- 
+<body class="inner-page">
+<a class="skip-link" href="#main-content">Lewati ke konten</a>
+<header class="site-header">
+  <nav class="site-nav" aria-label="Navigasi utama">
+    <a class="nav-brand" href="index.html" aria-label="Unit Kepatuhan Internal — Beranda"><span class="brand-mark">uki</span><span class="brand-name">Bea Cukai<br>Teluk Nibung</span></a>
+    <ul class="nav-links"><li><a href="index.html">Beranda</a></li><li><a href="lhk.html">Harta kekayaan</a></li><li><a href="pengelolaan-kinerja.html" aria-current="page">Pengelolaan kinerja</a></li><li><a href="dialog-kinerja.html">Dialog kinerja</a></li></ul>
+    <a class="nav-contact" href="index.html#tentang">Tentang UKI <span class="circle-arrow" aria-hidden="true">→</span></a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Buka menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span></button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu" hidden><a href="index.html">Beranda</a><a href="lhk.html">Harta kekayaan</a><a href="pengelolaan-kinerja.html" aria-current="page">Pengelolaan kinerja</a><a href="dialog-kinerja.html">Dialog kinerja</a><a href="index.html#tentang">Tentang UKI</a></div>
+</header>
+<main id="main-content">
 <div class="page-hero">
-  <div class="page-hero-content">
-    <div class="breadcrumb">
-      <a href="index.html">Beranda</a>
-      <span>/</span>
-      <span style="color:var(--white)">Pengelolaan Kinerja</span>
-    </div>
-    <h1 class="page-title">Pengelolaan Kinerja<br>Tahun 2026</h1>
-    <div class="page-divider"></div>
-  </div>
+<div class="page-hero-content"><div class="breadcrumb"><a href="index.html">Beranda</a><span aria-hidden="true">/</span><span>Pengelolaan Kinerja</span></div>
+
+<h1 class="page-title">Pengelolaan Kinerja<br/>Tahun 2026</h1>
+<div class="page-divider"></div>
+<p class="page-subtitle">Akses perjanjian kinerja, indikator, regulasi, dan dokumen pendukung kinerja pegawai.</p></div>
 </div>
- 
-<!-- QUICK ACCESS MENU -->
 <div class="menu-strip">
-  <div class="menu-strip-label">Akses Cepat Dokumen</div>
-  <div class="menu-grid">
-    <a href="https://kemenkeu.sharepoint.com/:f:/s/PLIBCTelukNibung/IgA6UJ6WfZwKRJ9yK9M2slnHARxBSPWtBBpbOVwYumQ424E?e=2IIs3V" class="menu-btn">
-      <span class="btn-icon">📌</span>
+<div class="menu-strip-label">Akses Cepat Dokumen</div>
+<div class="menu-grid">
+<a class="menu-btn" href="https://kemenkeu.sharepoint.com/:f:/s/PLIBCTelukNibung/IgA6UJ6WfZwKRJ9yK9M2slnHARxBSPWtBBpbOVwYumQ424E?e=2IIs3V">
+<span aria-hidden="true" class="btn-icon">↗</span>
       Perjanjian Kinerja Kepala Kantor
     </a>
-    <a href="https://kemenkeu.sharepoint.com/:f:/s/PLIBCTelukNibung/IgC6MrHa3E0yTKTsNg0RGY8JAfClJtLrWi1ZKvmqQRfNgZ0?e=d0T1Lf" class="menu-btn">
-      <span class="btn-icon">🔲</span>
+<a class="menu-btn" href="https://kemenkeu.sharepoint.com/:f:/s/PLIBCTelukNibung/IgC6MrHa3E0yTKTsNg0RGY8JAfClJtLrWi1ZKvmqQRfNgZ0?e=d0T1Lf">
+<span aria-hidden="true" class="btn-icon">↗</span>
       Matriks Penyelarasan
     </a>
-    <a href="https://s.id/kinerjadjbc" class="menu-btn">
-      <span class="btn-icon">📗</span>
+<a class="menu-btn" href="https://s.id/kinerjadjbc">
+<span aria-hidden="true" class="btn-icon">↗</span>
       Ketentuan Pengelolaan Kinerja (Pusat)
     </a>
-    <a href="https://kemenkeu-my.sharepoint.com/:f:/g/personal/arifin_yohandi_kemenkeu_go_id/IgC9codv_bq2T4_Uq62oZOcoAVd6X6pe4Ejwflk-uqz-YSk?e=EBFEDH" class="menu-btn">
-      <span class="btn-icon">📤</span>
+<a class="menu-btn" href="https://kemenkeu-my.sharepoint.com/:f:/g/personal/arifin_yohandi_kemenkeu_go_id/IgC9codv_bq2T4_Uq62oZOcoAVd6X6pe4Ejwflk-uqz-YSk?e=EBFEDH">
+<span aria-hidden="true" class="btn-icon">↗</span>
       Dokumen Kinerja Pegawai 2026
     </a>
-    <a href="https://kemenkeu.sharepoint.com/:f:/s/PLIBCTelukNibung/IgC13hL14vgfSoEKn58DNjVIAY_L3dlDw7QeCdNZZOBSvDE?e=x2ErI4" class="menu-btn">
-      <span class="btn-icon">🗂️</span>
+<a class="menu-btn" href="https://kemenkeu.sharepoint.com/:f:/s/PLIBCTelukNibung/IgC13hL14vgfSoEKn58DNjVIAY_L3dlDw7QeCdNZZOBSvDE?e=x2ErI4">
+<span aria-hidden="true" class="btn-icon">↗</span>
       Arsip Dokumen Kinerja
     </a>
-  </div>
 </div>
- 
-<!-- CONTENT -->
+</div>
 <div class="content-area">
-  <div class="fade-in" style="margin-bottom: 3rem;">
-    <div class="section-tag">Pengelolaan Kinerja</div>
-    <h2 class="content-title">Dokumen & Referensi Kinerja Pegawai</h2>
-    <p class="content-desc">
+<div class="reveal">
+<div class="section-tag">Pengelolaan Kinerja</div>
+<h2 class="content-title">Dokumen &amp; Referensi Kinerja Pegawai</h2>
+<p class="content-desc">
       Akses seluruh dokumen, aturan, dan panduan pengelolaan kinerja pegawai
       Kementerian Keuangan Tahun 2026. Pastikan seluruh dokumen telah dilengkapi sesuai tenggat waktu.
     </p>
-  </div>
- 
-  <div class="doc-grid fade-in">
- 
-    <a class="doc-card" href="#" id="pk-iku">
-      <span class="doc-icon">📌</span>
-      <div class="doc-title">PK dan Manual IKU</div>
-      <p class="doc-sub">Perjanjian Kinerja dan panduan Indikator Kinerja Utama untuk seluruh unit di lingkungan KPPBC TMP C Teluk Nibung.</p>
-      <div class="doc-link">Buka Dokumen →</div>
-    </a>
- 
-    <a class="doc-card" href="#" id="matriks">
-      <span class="doc-icon">🔲</span>
-      <div class="doc-title">Matriks Penyelarasan</div>
-      <p class="doc-sub">Matriks penyelarasan IKU antar unit kerja untuk memastikan keterkaitan dan kesinambungan capaian kinerja organisasi.</p>
-      <div class="doc-link">Buka Dokumen →</div>
-    </a>
- 
-    <a class="doc-card" href="#" id="ketentuan">
-      <span class="doc-icon">📗</span>
-      <div class="doc-title">Ketentuan Pengelolaan Kinerja (Pusat)</div>
-      <p class="doc-sub">Regulasi dan pedoman teknis pengelolaan kinerja yang diterbitkan oleh Kantor Pusat Direktorat Jenderal Bea dan Cukai.</p>
-      <div class="doc-link">Buka Dokumen →</div>
-    </a>
- 
-    <a class="doc-card" href="#" id="upload">
-      <span class="doc-icon">📤</span>
-      <div class="doc-title">Upload File Kinerja Pegawai</div>
-      <p class="doc-sub">Unggah dokumen kinerja individu pegawai secara periodik sesuai jadwal yang ditetapkan oleh Unit Kepatuhan Internal.</p>
-      <div class="doc-link">Upload Sekarang →</div>
-    </a>
- 
-    <a class="doc-card" href="#" id="dokumen">
-      <span class="doc-icon">🗂️</span>
-      <div class="doc-title">Dokumen Kinerja 2025</div>
-      <p class="doc-sub">Arsip seluruh dokumen kinerja pegawai dan organisasi Tahun 2025 sebagai referensi dan bahan evaluasi tahunan.</p>
-      <div class="doc-link">Lihat Arsip →</div>
-    </a>
- 
-  </div>
 </div>
- 
-<footer>
-  <p>© 2026 KPPBC TMP C Teluk Nibung · Direktorat Jenderal Bea dan Cukai · Kementerian Keuangan RI</p>
+<div class="doc-grid reveal">
+<a class="doc-card" href="https://kemenkeu.sharepoint.com/:f:/s/PLIBCTelukNibung/IgA6UJ6WfZwKRJ9yK9M2slnHARxBSPWtBBpbOVwYumQ424E?e=2IIs3V" id="pk-iku">
+<span aria-hidden="true" class="doc-icon">↗</span>
+<h3 class="doc-title">PK dan Manual IKU</h3>
+<p class="doc-sub">Perjanjian Kinerja dan panduan Indikator Kinerja Utama untuk seluruh unit di lingkungan KPPBC TMP C Teluk Nibung.</p>
+<div class="doc-link">Buka Dokumen →</div>
+</a>
+<a class="doc-card" href="https://kemenkeu.sharepoint.com/:f:/s/PLIBCTelukNibung/IgC6MrHa3E0yTKTsNg0RGY8JAfClJtLrWi1ZKvmqQRfNgZ0?e=d0T1Lf" id="matriks">
+<span aria-hidden="true" class="doc-icon">↗</span>
+<h3 class="doc-title">Matriks Penyelarasan</h3>
+<p class="doc-sub">Matriks penyelarasan IKU antar unit kerja untuk memastikan keterkaitan dan kesinambungan capaian kinerja organisasi.</p>
+<div class="doc-link">Buka Dokumen →</div>
+</a>
+<a class="doc-card" href="https://s.id/kinerjadjbc" id="ketentuan">
+<span aria-hidden="true" class="doc-icon">↗</span>
+<h3 class="doc-title">Ketentuan Pengelolaan Kinerja (Pusat)</h3>
+<p class="doc-sub">Regulasi dan pedoman teknis pengelolaan kinerja yang diterbitkan oleh Kantor Pusat Direktorat Jenderal Bea dan Cukai.</p>
+<div class="doc-link">Buka Dokumen →</div>
+</a>
+<a class="doc-card" href="https://kemenkeu-my.sharepoint.com/:f:/g/personal/arifin_yohandi_kemenkeu_go_id/IgC9codv_bq2T4_Uq62oZOcoAVd6X6pe4Ejwflk-uqz-YSk?e=EBFEDH" id="upload">
+<span aria-hidden="true" class="doc-icon">↗</span>
+<h3 class="doc-title">Upload File Kinerja Pegawai</h3>
+<p class="doc-sub">Unggah dokumen kinerja individu pegawai secara periodik sesuai jadwal yang ditetapkan oleh Unit Kepatuhan Internal.</p>
+<div class="doc-link">Upload Sekarang →</div>
+</a>
+<a class="doc-card" href="https://kemenkeu.sharepoint.com/:f:/s/PLIBCTelukNibung/IgC13hL14vgfSoEKn58DNjVIAY_L3dlDw7QeCdNZZOBSvDE?e=x2ErI4" id="dokumen">
+<span aria-hidden="true" class="doc-icon">↗</span>
+<h3 class="doc-title">Dokumen Kinerja 2025</h3>
+<p class="doc-sub">Arsip seluruh dokumen kinerja pegawai dan organisasi Tahun 2025 sebagai referensi dan bahan evaluasi tahunan.</p>
+<div class="doc-link">Lihat Arsip →</div>
+</a>
+</div>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="footer-top">
+    <p class="footer-statement">Integritas dijaga.<br>Kinerja bermakna.</p>
+    <a class="text-link" href="index.html#layanan">Akses layanan <span aria-hidden="true">↗</span></a>
+  </div>
+  <div class="footer-inner">
+    <div class="footer-brand"><a class="nav-brand" href="index.html"><span class="brand-mark">uki</span><span class="brand-name">Bea Cukai<br>Teluk Nibung</span></a><p>Unit Kepatuhan Internal<br>KPPBC TMP C Teluk Nibung.<br>Direktorat Jenderal Bea dan Cukai,<br>Kementerian Keuangan Republik Indonesia.</p></div>
+    <div class="footer-col"><h4>Jelajahi portal</h4><ul><li><a href="index.html">Beranda</a></li><li><a href="lhk.html">Harta kekayaan</a></li><li><a href="pengelolaan-kinerja.html">Pengelolaan kinerja</a></li><li><a href="dialog-kinerja.html">Dialog kinerja</a></li></ul></div>
+    <div class="footer-col"><h4>Tautan terkait</h4><ul>
+      <li><a href="https://beacukai.go.id" target="_blank" rel="noopener noreferrer">Bea Cukai ↗</a></li>
+      <li><a href="https://kemenkeu.go.id" target="_blank" rel="noopener noreferrer">Kementerian Keuangan ↗</a></li>
+      <li><a href="https://elhkpn.kpk.go.id" target="_blank" rel="noopener noreferrer">e-LHKPN ↗</a></li>
+      <li><a href="https://span.kemenkeu.go.id" target="_blank" rel="noopener noreferrer">SPAN ↗</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 KPPBC TMP C Teluk Nibung</p><p>Unit Kepatuhan Internal · Kementerian Keuangan RI</p></div>
 </footer>
- 
-<script>
-  const io = new IntersectionObserver(entries => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 100);
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
-</script>
 </body>
 </html>

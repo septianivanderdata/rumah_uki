@@ -1,265 +1,134 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dialog Kinerja dan Risiko Organisasi – Bea Cukai Teluk Nibung</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portal Unit Kepatuhan Internal Bea Cukai Teluk Nibung. Akses pelaporan harta kekayaan, pengelolaan kinerja, dan dialog kinerja organisasi.">
+  <meta name="theme-color" content="#101310">
+  <title>Dialog Kinerja dan Risiko Organisasi – Bea Cukai Teluk Nibung</title>
+  <link rel="stylesheet" href="assets/site.css">
 
-  :root {
-    --primary: #ff385c;
-    --primary-active: #e00b41;
-    --surface: #f7f7f7;
-    --surface-card: #ffffff;
-    --surface-strong: #f2f2f2;
-    --ink: #222222;
-    --muted: #6a6a6a;
-    --border: #e6e6e6;
-    --shadow: 0 30px 80px rgba(34, 34, 34, 0.08);
-    --radius-xl: 32px;
-    --radius-lg: 24px;
-    --radius-md: 18px;
-    --max-width: 1120px;
-  }
-
-  html { scroll-behavior: smooth; }
-  body { background: var(--surface); color: var(--ink); font-family: 'Inter', system-ui, sans-serif; min-height: 100vh; overflow-x: hidden; }
-  img { max-width: 100%; display: block; }
-  a { color: inherit; text-decoration: none; }
-
-  nav {
-    position: fixed;
-    top: 0; left: 50%; transform: translateX(-50%);
-    width: min(100%, calc(var(--max-width) + 4rem));
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 0 2rem;
-    height: 76px;
-    background: rgba(255,255,255,0.92);
-    backdrop-filter: blur(18px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-brand { display: flex; align-items: center; gap: 14px; }
-  .nav-logo { width: 44px; height: 44px; border-radius: 18px; display: flex; align-items: center; justify-content: center; background: var(--primary); color: #fff; font-weight: 700; font-size: 1rem; }
-  .nav-title { font-size: 0.88rem; font-weight: 700; letter-spacing: 0.1em; line-height: 1.2; color: var(--ink); }
-  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
-  .nav-links a { color: var(--muted); font-size: 0.88rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; transition: color .25s; }
-  .nav-links a:hover, .nav-links a.active { color: var(--primary); }
-
-  .page-hero {
-    padding-top: 94px;
-    min-height: 320px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
-  }
-  .page-hero-content { max-width: 760px; padding: 3.5rem 2rem; }
-  .breadcrumb { display: inline-flex; align-items: center; gap: 0.75rem; color: var(--primary); font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700; margin-bottom: 1rem; }
-  .breadcrumb span { color: var(--muted); }
-  .page-title { font-size: clamp(2.25rem, 4vw, 3.8rem); font-weight: 700; color: var(--ink); line-height: 1.05; margin-bottom: 1rem; }
-  .page-divider { width: 70px; height: 3px; background: var(--primary); border-radius: 9999px; margin: 1rem auto; }
-
-  .block { padding: 3rem 2rem; max-width: 1120px; margin: 0 auto; }
-  .block + .block { border-top: 1px solid var(--border); }
-  .block-label { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--primary); border-left: 3px solid var(--primary); padding-left: 1rem; margin-bottom: 1.5rem; }
-
-  .btn-row { display: flex; flex-wrap: wrap; gap: 1rem; }
-  .action-btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 24px; border-radius: 9999px; background: var(--surface-card); border: 1px solid var(--border); color: var(--ink); font-size: 0.95rem; font-weight: 600; transition: background .25s ease, transform .2s ease; }
-  .action-btn:hover { background: var(--surface-strong); transform: translateY(-1px); }
-
-  .months-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0.75rem; margin-top: 0.75rem; }
-  .month-btn { padding: 12px 10px; text-align: center; border-radius: 16px; background: var(--surface-card); border: 1px solid var(--border); color: var(--muted); font-size: 0.85rem; font-weight: 600; transition: background .25s ease, color .25s ease; }
-  .month-btn:hover { background: var(--surface-strong); color: var(--ink); }
-  .month-btn.active { background: rgba(255,56,92,0.1); border-color: rgba(255,56,92,0.25); color: var(--primary); }
-
-  .units-label { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--primary); border-left: 3px solid var(--primary); padding-left: 1rem; margin-bottom: 1.5rem; }
-  .units-desc { font-size: 1rem; color: var(--muted); line-height: 1.75; margin-bottom: 2rem; }
-
-  .units-grid { display: grid; gap: 1rem; }
-  .unit-card { display: grid; grid-template-columns: 140px 1fr; gap: 1rem; align-items: center; background: #ffffff; border: 1px solid rgba(34,34,34,0.08); border-radius: var(--radius-xl); padding: 1.5rem; box-shadow: 0 26px 60px rgba(34,34,34,0.05); }
-  .unit-card:nth-child(odd) { grid-template-columns: 140px 1fr; }
-  .unit-emblem { width: 64px; height: 64px; border-radius: 22px; background: rgba(255,56,92,0.12); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
-  .unit-body { display: flex; flex-direction: column; gap: 1rem; }
-  .unit-name { font-size: 1rem; font-weight: 700; color: var(--ink); }
-  .unit-card p { color: var(--muted); line-height: 1.7; }
-  .unit-btns { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-  .unit-btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.85rem 1.2rem; border-radius: 9999px; background: var(--surface-strong); border: 1px solid rgba(34,34,34,0.08); color: var(--ink); font-size: 0.95rem; font-weight: 600; line-height: 1.3; transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease; }
-  .unit-btn:hover { transform: translateY(-1px); background: var(--surface); }
-  .unit-btn.secondary { background: rgba(255,56,92,0.12); border-color: rgba(255,56,92,0.2); color: var(--primary); }
-
-  footer { background: var(--surface-card); border-top: 1px solid var(--border); padding: 2.5rem 2rem; }
-  .footer-inner { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 1.75rem; }
-  .footer-brand p { margin-top: 1rem; color: var(--muted); line-height: 1.8; }
-  .footer-col h4 { margin-bottom: 1rem; font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); font-weight: 700; }
-  .footer-col li { font-size: 0.95rem; color: var(--muted); padding: 0.35rem 0; list-style: none; }
-  .footer-bottom { max-width: 1120px; margin: 1.5rem auto 0; padding-top: 1rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; gap: 1rem; color: var(--muted); font-size: 0.82rem; flex-wrap: wrap; }
-
-  @media (max-width: 860px) {
-    .units-grid, .months-grid { grid-template-columns: 1fr; }
-    .unit-card { grid-template-columns: 1fr; }
-    .page-hero-content { padding: 2.5rem 1.5rem; }
-    nav { padding: 0 1rem; }
-    .nav-links { display: none; }
-  }
-  @media (max-width: 640px) {
-    .page-title { font-size: 2.4rem; }
-    .action-btn { width: 100%; justify-content: center; }
-  }
-</style>
+  <script src="assets/site.js" defer></script>
 </head>
-<body>
-
-<nav>
-  <a class="nav-brand" href="index.html">
-    <div class="nav-logo">BC</div>
-    <div class="nav-title">Bea Cukai<br>Teluk Nibung</div>
-  </a>
-  <ul class="nav-links">
-    <li><a href="index.html">Beranda</a></li>
-    <li><a href="lhk.html">Laporan Harta Kekayaan</a></li>
-    <li><a href="pengelolaan-kinerja.html">Pengelolaan Kinerja</a></li>
-    <li><a href="dialog-kinerja.html" class="active">Dialog Kinerja Organisasi</a></li>
-  </ul>
-  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
+<body class="inner-page">
+<a class="skip-link" href="#main-content">Lewati ke konten</a>
+<header class="site-header">
+  <nav class="site-nav" aria-label="Navigasi utama">
+    <a class="nav-brand" href="index.html" aria-label="Unit Kepatuhan Internal — Beranda"><span class="brand-mark">uki</span><span class="brand-name">Bea Cukai<br>Teluk Nibung</span></a>
+    <ul class="nav-links"><li><a href="index.html">Beranda</a></li><li><a href="lhk.html">Harta kekayaan</a></li><li><a href="pengelolaan-kinerja.html">Pengelolaan kinerja</a></li><li><a href="dialog-kinerja.html" aria-current="page">Dialog kinerja</a></li></ul>
+    <a class="nav-contact" href="index.html#tentang">Tentang UKI <span class="circle-arrow" aria-hidden="true">→</span></a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Buka menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span></button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu" hidden><a href="index.html">Beranda</a><a href="lhk.html">Harta kekayaan</a><a href="pengelolaan-kinerja.html">Pengelolaan kinerja</a><a href="dialog-kinerja.html" aria-current="page">Dialog kinerja</a><a href="index.html#tentang">Tentang UKI</a></div>
+</header>
+<main id="main-content">
 <div class="page-hero">
-  <div class="page-hero-content">
-    <div class="breadcrumb">
-      <a href="index.html">Beranda</a>
-      <span>/</span>
-      <span style="color:var(--white)">Dialog Kinerja Organisasi</span>
-    </div>
-    <h1 class="page-title">Dialog Kinerja dan<br>Risiko Organisasi</h1>
-    <div class="page-divider"></div>
-  </div>
+<div class="page-hero-content"><div class="breadcrumb"><a href="index.html">Beranda</a><span aria-hidden="true">/</span><span>Dialog Kinerja dan Risiko Organisasi</span></div>
+
+<h1 class="page-title">Dialog Kinerja dan<br/>Risiko Organisasi</h1>
+<div class="page-divider"></div>
+<p class="page-subtitle">Bahan koordinasi, laporan kinerja dan risiko, serta dokumen pendukung setiap unit kerja.</p></div>
 </div>
-
-<!-- BLOCK 1: DOKUMEN UTAMA -->
-<div class="block fade-in">
-  <div class="block-label">Dokumen Dialog Kinerja</div>
-  <div class="btn-row">
-    <a href="https://kemenkeu-my.sharepoint.com/:p:/g/personal/septian_ivander_kemenkeu_go_id/IQAjsD6RYjaCSK1v9K2YwAr4AfalNoX8KEWTpfOKy1WCZcY?e=8xPGfg" class="action-btn" target="_blank">📊 Executive Summary</a> 
-    <a href="https://docs.google.com/presentation/d/1VxX4jIAa2DOEltwdogtPdZD_AbHl7otRFyAGkosfcGU/edit?usp=sharing" class="action-btn" target="_blank">📑 LKRK Gabungan</a>
-    <a href="https://docs.google.com/spreadsheets/d/1ySEedwcPmOHkYKbOTXJqCfKAOUsCAqvEIRMtYLe5g2I/edit?gid=356025717#gid=356025717" class="action-btn" target="_blank">🗄️ Set up data</a>
-    <a href="https://docs.google.com/presentation/d/1gsl0uMbH5zHepKi3j3FoUN2kdtl8hv06mbUrfVTvVvU/edit?usp=sharing" class="action-btn" target="_blank">📋 Bahan Tayang DKO </a>
-    <a href="https://docs.google.com/spreadsheets/d/1VXj0SSD-Zmc1v5HQSHfw6JHP_Xh0wc4Jy4HCnHpMNhQ/edit?usp=sharing" class="action-btn" target="_blank">🔍 Penilaian Tata Kelola</a>
-  </div>
+<div class="block reveal">
+<h2 class="block-label">Dokumen Dialog Kinerja</h2>
+<div class="btn-row">
+<a class="action-btn" href="https://kemenkeu-my.sharepoint.com/:p:/g/personal/septian_ivander_kemenkeu_go_id/IQAjsD6RYjaCSK1v9K2YwAr4AfalNoX8KEWTpfOKy1WCZcY?e=8xPGfg" rel="noopener noreferrer" target="_blank">Executive Summary ↗</a>
+<a class="action-btn" href="https://docs.google.com/presentation/d/1VxX4jIAa2DOEltwdogtPdZD_AbHl7otRFyAGkosfcGU/edit?usp=sharing" rel="noopener noreferrer" target="_blank">LKRK Gabungan ↗</a>
+<a class="action-btn" href="https://docs.google.com/spreadsheets/d/1ySEedwcPmOHkYKbOTXJqCfKAOUsCAqvEIRMtYLe5g2I/edit?gid=356025717#gid=356025717" rel="noopener noreferrer" target="_blank">Set up data ↗</a>
+<a class="action-btn" href="https://docs.google.com/presentation/d/1gsl0uMbH5zHepKi3j3FoUN2kdtl8hv06mbUrfVTvVvU/edit?usp=sharing" rel="noopener noreferrer" target="_blank">Bahan Tayang DKO ↗</a>
+<a class="action-btn" href="https://docs.google.com/spreadsheets/d/1VXj0SSD-Zmc1v5HQSHfw6JHP_Xh0wc4Jy4HCnHpMNhQ/edit?usp=sharing" rel="noopener noreferrer" target="_blank">Penilaian Tata Kelola ↗</a>
 </div>
-
-<!-- BLOCK 2: UPLOAD BULANAN -->
-<div class="block fade-in">
-  <div class="block-label">Upload Dokumen LKRK dan Dokumen Pendukung Masing-Masing Unit</div>
-  <div class="months-grid">
-    <a href="https://kemenkeu-my.sharepoint.com/:f:/r/personal/septian_ivander_kemenkeu_go_id/Documents/BC%20Teluk%20Nibung/DKO/1.%20Januari?csf=1&web=1&e=CfsPyJ" class="month-btn" target="_blank">Januari</a>
-    <a href="https://kemenkeu-my.sharepoint.com/my?id=%2Fpersonal%2Fseptian%5Fivander%5Fkemenkeu%5Fgo%5Fid%2FDocuments%2FBC%20Teluk%20Nibung%2FDKO%2F2%2E%20Februari&viewid=5cc00631%2Df18a%2D4f36%2Dbdc3%2Dabec58a84561&csf=1&FolderCTID=0x012000092491659B222D429C184B8D393BD6E5" class="month-btn" target="_blank">Februari</a>
-    <a href="https://kemenkeu-my.sharepoint.com/:f:/g/personal/septian_ivander_kemenkeu_go_id/IgB3E_Hzo_cVSY0wPtPqXOBsAcOUNpioc71Lh-GVzZ2AEx4?e=uwfa8V" class="month-btn" target="_blank">Maret</a>
-    <a href="https://kemenkeu-my.sharepoint.com/my?id=%2Fpersonal%2Fseptian%5Fivander%5Fkemenkeu%5Fgo%5Fid%2FDocuments%2FBC%20Teluk%20Nibung%2FDKO%2F4%2E%20April&viewid=5cc00631%2Df18a%2D4f36%2Dbdc3%2Dabec58a84561&csf=1&FolderCTID=0x012000092491659B222D429C184B8D393BD6E5" class="month-btn" target="_blank">April</a>
-    <a href="#" class="month-btn">Mei</a>
-    <a href="#" class="month-btn">Juni</a>
-    <a href="#" class="month-btn">Juli</a>
-    <a href="#" class="month-btn">Agustus</a>
-    <a href="#" class="month-btn">September</a>
-    <a href="#" class="month-btn">Oktober</a>
-    <a href="#" class="month-btn">November</a>
-    <a href="#" class="month-btn">Desember</a>
-  </div>
 </div>
-
-<!-- BLOCK 3: UNIT KERJA -->
-<div class="block fade-in" style="padding-bottom: 5rem;">
-  <div class="units-label">Dokumen Kinerja Per Unit Kerja</div>
-  <p class="units-desc">Akses dokumen LIRK dan Laporan Capaian Kinerja masing-masing unit di lingkungan KPPBC TMP C Teluk Nibung.</p>
-
-  <div class="units-grid">
-
-    <div class="unit-card">
-      <div class="unit-emblem">🏛️</div>
-      <div class="unit-body">
-        <div class="unit-name">Subbagian Umum</div>
-        <div class="unit-btns">
-          <a href="https://docs.google.com/presentation/d/1K-LT4pC6ilelPIXFqDYI9yNBPqucrq0EAnomVcfggik/edit?usp=sharing" class="unit-btn" target="_blank">Laporan Kinerja, Risiko dan Keuangan (LKRK)</a>
-          <a href="https://docs.google.com/spreadsheets/d/1n02AVk248Hi7P3bi49nCfN72OLUZYz-ZwAYjuaDPGpE/edit?usp=sharing" class="unit-btn secondary" target="_blank">Laporan Capaian Kinerja</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="unit-card">
-      <div class="unit-emblem">🔍</div>
-      <div class="unit-body">
-        <div class="unit-name">Seksi Penindakan dan Penyidikan</div>
-        <div class="unit-btns">
-          <a href="https://docs.google.com/presentation/d/1jpjep9it8b4_YsC_9TebE0mEB13RAsc8KCZTtW9pduw/edit?usp=sharing" class="unit-btn" target="_blank">Laporan Kinerja, Risiko dan Keuangan (LKRK)</a>
-          <a href="https://docs.google.com/spreadsheets/d/1FXjSWTd0oh9BGUeLeUsfmut8zL2boeZjbIWZGiqNv_4/edit?gid=1836055666#gid=1836055666" class="unit-btn secondary" target="_blank">Laporan Capaian Kinerja</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="unit-card">
-      <div class="unit-emblem">💰</div>
-      <div class="unit-body">
-        <div class="unit-name">Seksi Perbendaharaan</div>
-        <div class="unit-btns">
-          <a href="https://docs.google.com/presentation/d/1aBu8cr_s4oX8t8-tUWciA333paVW9pDa81Oe21YS_og/edit?usp=sharing" class="unit-btn" target="_blank">Laporan Kinerja, Risiko dan Keuangan (LKRK)</a>
-          <a href="https://docs.google.com/spreadsheets/d/1G_dtEE2eD27oqAzaf7hi-itMoYNaorPrY14iYOWYQSs/edit?usp=sharing" class="unit-btn secondary" target="_blank">Laporan Capaian Kinerja</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="unit-card">
-      <div class="unit-emblem">🚢</div>
-      <div class="unit-body">
-        <div class="unit-name">Seksi Pelayanan Kepabeanan dan Cukai dan Dukungan Teknis</div>
-        <div class="unit-btns">
-          <a href="https://docs.google.com/presentation/d/1CNRhRRlVhBgtnbvbXLskR0WGO6NqMb_hYOI9Xk06s4M/edit?usp=sharing" class="unit-btn" target="_blank">Laporan Kinerja, Risiko dan Keuangan (LKRK)</a>
-          <a href="https://docs.google.com/spreadsheets/d/1exdq0InxHgRv6ANuMqvnaKH6ugTTZO4ot5Nrpp2nQW0/edit?usp=drive_link" class="unit-btn secondary" target="_blank">Laporan Capaian Kinerja</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="unit-card">
-      <div class="unit-emblem">🛡️</div>
-      <div class="unit-body">
-        <div class="unit-name">Seksi Kepatuhan Internal dan Penyuluhan</div>
-        <div class="unit-btns">
-          <a href="https://docs.google.com/presentation/d/1T1mIyK68RdK_fv0CeYWro5TsnHt99vrjq6RUQhO914U/edit?usp=sharing" class="unit-btn" target="_blank">Laporan Kinerja, Risiko dan Keuangan (LKRK)</a>
-          <a href="https://docs.google.com/spreadsheets/d/1GGmy60smmvZIzUohsaOdjCeJCOasRFpdomlGB2mLwLs/edit?usp=sharing" class="unit-btn secondary" target="_blank">Laporan Capaian Kinerja</a>
-        </div>
-      </div>
-    </div>
-
-  </div>
+<div class="block reveal">
+<h2 class="block-label">Upload Dokumen LKRK dan Dokumen Pendukung Masing-Masing Unit</h2>
+<div class="months-grid">
+<a class="month-btn" href="https://kemenkeu-my.sharepoint.com/:f:/r/personal/septian_ivander_kemenkeu_go_id/Documents/BC%20Teluk%20Nibung/DKO/1.%20Januari?csf=1&amp;web=1&amp;e=CfsPyJ" rel="noopener noreferrer" target="_blank">Januari</a>
+<a class="month-btn" href="https://kemenkeu-my.sharepoint.com/my?id=%2Fpersonal%2Fseptian%5Fivander%5Fkemenkeu%5Fgo%5Fid%2FDocuments%2FBC%20Teluk%20Nibung%2FDKO%2F2%2E%20Februari&amp;viewid=5cc00631%2Df18a%2D4f36%2Dbdc3%2Dabec58a84561&amp;csf=1&amp;FolderCTID=0x012000092491659B222D429C184B8D393BD6E5" rel="noopener noreferrer" target="_blank">Februari</a>
+<a class="month-btn" href="https://kemenkeu-my.sharepoint.com/:f:/g/personal/septian_ivander_kemenkeu_go_id/IgB3E_Hzo_cVSY0wPtPqXOBsAcOUNpioc71Lh-GVzZ2AEx4?e=uwfa8V" rel="noopener noreferrer" target="_blank">Maret</a>
+<a class="month-btn" href="https://kemenkeu-my.sharepoint.com/my?id=%2Fpersonal%2Fseptian%5Fivander%5Fkemenkeu%5Fgo%5Fid%2FDocuments%2FBC%20Teluk%20Nibung%2FDKO%2F4%2E%20April&amp;viewid=5cc00631%2Df18a%2D4f36%2Dbdc3%2Dabec58a84561&amp;csf=1&amp;FolderCTID=0x012000092491659B222D429C184B8D393BD6E5" rel="noopener noreferrer" target="_blank">April</a>
+<span class="month-btn unavailable">Mei<small>Belum tersedia</small></span>
+<span class="month-btn unavailable">Juni<small>Belum tersedia</small></span>
+<span class="month-btn unavailable">Juli<small>Belum tersedia</small></span>
+<span class="month-btn unavailable">Agustus<small>Belum tersedia</small></span>
+<span class="month-btn unavailable">September<small>Belum tersedia</small></span>
+<span class="month-btn unavailable">Oktober<small>Belum tersedia</small></span>
+<span class="month-btn unavailable">November<small>Belum tersedia</small></span>
+<span class="month-btn unavailable">Desember<small>Belum tersedia</small></span>
 </div>
-
-<footer>
-  <p>© 2026 KPPBC TMP C Teluk Nibung · Direktorat Jenderal Bea dan Cukai · Kementerian Keuangan RI</p>
+</div>
+<div class="block reveal">
+<h2 class="units-label">Dokumen Kinerja Per Unit Kerja</h2>
+<p class="units-desc">Akses dokumen LIRK dan Laporan Capaian Kinerja masing-masing unit di lingkungan KPPBC TMP C Teluk Nibung.</p>
+<div class="units-grid">
+<div class="unit-card">
+<div aria-hidden="true" class="unit-emblem">UM</div>
+<div class="unit-body">
+<h2 class="unit-name">Subbagian Umum</h2>
+<div class="unit-btns">
+<a class="unit-btn" href="https://docs.google.com/presentation/d/1K-LT4pC6ilelPIXFqDYI9yNBPqucrq0EAnomVcfggik/edit?usp=sharing" rel="noopener noreferrer" target="_blank">Laporan Kinerja, Risiko dan Keuangan (LKRK)</a>
+<a class="unit-btn secondary" href="https://docs.google.com/spreadsheets/d/1n02AVk248Hi7P3bi49nCfN72OLUZYz-ZwAYjuaDPGpE/edit?usp=sharing" rel="noopener noreferrer" target="_blank">Laporan Capaian Kinerja</a>
+</div>
+</div>
+</div>
+<div class="unit-card">
+<div aria-hidden="true" class="unit-emblem">P2</div>
+<div class="unit-body">
+<h2 class="unit-name">Seksi Penindakan dan Penyidikan</h2>
+<div class="unit-btns">
+<a class="unit-btn" href="https://docs.google.com/presentation/d/1jpjep9it8b4_YsC_9TebE0mEB13RAsc8KCZTtW9pduw/edit?usp=sharing" rel="noopener noreferrer" target="_blank">Laporan Kinerja, Risiko dan Keuangan (LKRK)</a>
+<a class="unit-btn secondary" href="https://docs.google.com/spreadsheets/d/1FXjSWTd0oh9BGUeLeUsfmut8zL2boeZjbIWZGiqNv_4/edit?gid=1836055666#gid=1836055666" rel="noopener noreferrer" target="_blank">Laporan Capaian Kinerja</a>
+</div>
+</div>
+</div>
+<div class="unit-card">
+<div aria-hidden="true" class="unit-emblem">PB</div>
+<div class="unit-body">
+<h2 class="unit-name">Seksi Perbendaharaan</h2>
+<div class="unit-btns">
+<a class="unit-btn" href="https://docs.google.com/presentation/d/1aBu8cr_s4oX8t8-tUWciA333paVW9pDa81Oe21YS_og/edit?usp=sharing" rel="noopener noreferrer" target="_blank">Laporan Kinerja, Risiko dan Keuangan (LKRK)</a>
+<a class="unit-btn secondary" href="https://docs.google.com/spreadsheets/d/1G_dtEE2eD27oqAzaf7hi-itMoYNaorPrY14iYOWYQSs/edit?usp=sharing" rel="noopener noreferrer" target="_blank">Laporan Capaian Kinerja</a>
+</div>
+</div>
+</div>
+<div class="unit-card">
+<div aria-hidden="true" class="unit-emblem">PKC</div>
+<div class="unit-body">
+<h2 class="unit-name">Seksi Pelayanan Kepabeanan dan Cukai dan Dukungan Teknis</h2>
+<div class="unit-btns">
+<a class="unit-btn" href="https://docs.google.com/presentation/d/1CNRhRRlVhBgtnbvbXLskR0WGO6NqMb_hYOI9Xk06s4M/edit?usp=sharing" rel="noopener noreferrer" target="_blank">Laporan Kinerja, Risiko dan Keuangan (LKRK)</a>
+<a class="unit-btn secondary" href="https://docs.google.com/spreadsheets/d/1exdq0InxHgRv6ANuMqvnaKH6ugTTZO4ot5Nrpp2nQW0/edit?usp=drive_link" rel="noopener noreferrer" target="_blank">Laporan Capaian Kinerja</a>
+</div>
+</div>
+</div>
+<div class="unit-card">
+<div aria-hidden="true" class="unit-emblem">KI</div>
+<div class="unit-body">
+<h2 class="unit-name">Seksi Kepatuhan Internal dan Penyuluhan</h2>
+<div class="unit-btns">
+<a class="unit-btn" href="https://docs.google.com/presentation/d/1T1mIyK68RdK_fv0CeYWro5TsnHt99vrjq6RUQhO914U/edit?usp=sharing" rel="noopener noreferrer" target="_blank">Laporan Kinerja, Risiko dan Keuangan (LKRK)</a>
+<a class="unit-btn secondary" href="https://docs.google.com/spreadsheets/d/1GGmy60smmvZIzUohsaOdjCeJCOasRFpdomlGB2mLwLs/edit?usp=sharing" rel="noopener noreferrer" target="_blank">Laporan Capaian Kinerja</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="footer-top">
+    <p class="footer-statement">Integritas dijaga.<br>Kinerja bermakna.</p>
+    <a class="text-link" href="index.html#layanan">Akses layanan <span aria-hidden="true">↗</span></a>
+  </div>
+  <div class="footer-inner">
+    <div class="footer-brand"><a class="nav-brand" href="index.html"><span class="brand-mark">uki</span><span class="brand-name">Bea Cukai<br>Teluk Nibung</span></a><p>Unit Kepatuhan Internal<br>KPPBC TMP C Teluk Nibung.<br>Direktorat Jenderal Bea dan Cukai,<br>Kementerian Keuangan Republik Indonesia.</p></div>
+    <div class="footer-col"><h4>Jelajahi portal</h4><ul><li><a href="index.html">Beranda</a></li><li><a href="lhk.html">Harta kekayaan</a></li><li><a href="pengelolaan-kinerja.html">Pengelolaan kinerja</a></li><li><a href="dialog-kinerja.html">Dialog kinerja</a></li></ul></div>
+    <div class="footer-col"><h4>Tautan terkait</h4><ul>
+      <li><a href="https://beacukai.go.id" target="_blank" rel="noopener noreferrer">Bea Cukai ↗</a></li>
+      <li><a href="https://kemenkeu.go.id" target="_blank" rel="noopener noreferrer">Kementerian Keuangan ↗</a></li>
+      <li><a href="https://elhkpn.kpk.go.id" target="_blank" rel="noopener noreferrer">e-LHKPN ↗</a></li>
+      <li><a href="https://span.kemenkeu.go.id" target="_blank" rel="noopener noreferrer">SPAN ↗</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 KPPBC TMP C Teluk Nibung</p><p>Unit Kepatuhan Internal · Kementerian Keuangan RI</p></div>
 </footer>
-
-<script>
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobileMenu');
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    mobileMenu.classList.toggle('open');
-  });
-  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    hamburger.classList.remove('open'); mobileMenu.classList.remove('open');
-  }));
-  const io = new IntersectionObserver(entries => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 120);
-    });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
-</script>
 </body>
 </html>
