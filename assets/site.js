@@ -14,8 +14,8 @@ function setMenu(open, returnFocus = false) {
 menuButton?.addEventListener('click', () => {
   setMenu(menuButton.getAttribute('aria-expanded') !== 'true');
 });
-mobileMenu?.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => setMenu(false));
+mobileMenu?.addEventListener('click', event => {
+  if (event.target.closest('a')) setMenu(false);
 });
 document.addEventListener('keydown', event => {
   if (event.key === 'Escape' && menuButton?.getAttribute('aria-expanded') === 'true') {

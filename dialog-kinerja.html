@@ -9,13 +9,15 @@
   <link rel="stylesheet" href="assets/site.css">
 
   <script src="assets/site.js" defer></script>
+  <script src="assets/menus.js" defer></script>
+  <script src="assets/dialog-page.js" defer></script>
 </head>
 <body class="inner-page">
 <a class="skip-link" href="#main-content">Lewati ke konten</a>
 <header class="site-header">
   <nav class="site-nav" aria-label="Navigasi utama">
     <a class="nav-brand" href="index.html" aria-label="Unit Kepatuhan Internal — Beranda"><span class="brand-mark">uki</span><span class="brand-name">Bea Cukai<br>Teluk Nibung</span></a>
-    <ul class="nav-links"><li><a href="index.html">Beranda</a></li><li><a href="lhk.html">Harta kekayaan</a></li><li><a href="pengelolaan-kinerja.html">Pengelolaan kinerja</a></li><li><a href="dialog-kinerja.html" aria-current="page">Dialog kinerja</a></li></ul>
+    <ul class="nav-links" data-menu-nav><li><a href="index.html">Beranda</a></li><li><a href="lhk.html">Harta kekayaan</a></li><li><a href="pengelolaan-kinerja.html">Pengelolaan kinerja</a></li><li><a href="dialog-kinerja.html" aria-current="page">Dialog kinerja</a></li></ul>
     <a class="nav-contact" href="index.html#tentang">Tentang UKI <span class="circle-arrow" aria-hidden="true">→</span></a>
     <button class="nav-hamburger" id="hamburger" aria-label="Buka menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span></button>
   </nav>
@@ -31,7 +33,7 @@
 </div>
 <div class="block reveal">
 <h2 class="block-label">Dokumen Dialog Kinerja</h2>
-<div class="btn-row">
+<div class="btn-row" data-dialog-documents>
 <a class="action-btn" href="https://kemenkeu-my.sharepoint.com/:p:/g/personal/septian_ivander_kemenkeu_go_id/IQAjsD6RYjaCSK1v9K2YwAr4AfalNoX8KEWTpfOKy1WCZcY?e=8xPGfg" rel="noopener noreferrer" target="_blank">Executive Summary ↗</a>
 <a class="action-btn" href="https://docs.google.com/presentation/d/1VxX4jIAa2DOEltwdogtPdZD_AbHl7otRFyAGkosfcGU/edit?usp=sharing" rel="noopener noreferrer" target="_blank">LKRK Gabungan ↗</a>
 <a class="action-btn" href="https://docs.google.com/spreadsheets/d/1ySEedwcPmOHkYKbOTXJqCfKAOUsCAqvEIRMtYLe5g2I/edit?gid=356025717#gid=356025717" rel="noopener noreferrer" target="_blank">Set up data ↗</a>
@@ -41,7 +43,7 @@
 </div>
 <div class="block reveal">
 <h2 class="block-label">Upload Dokumen LKRK dan Dokumen Pendukung Masing-Masing Unit</h2>
-<div class="months-grid">
+<div class="months-grid" data-dialog-months>
 <a class="month-btn" href="https://kemenkeu-my.sharepoint.com/:f:/r/personal/septian_ivander_kemenkeu_go_id/Documents/BC%20Teluk%20Nibung/DKO/1.%20Januari?csf=1&amp;web=1&amp;e=CfsPyJ" rel="noopener noreferrer" target="_blank">Januari</a>
 <a class="month-btn" href="https://kemenkeu-my.sharepoint.com/my?id=%2Fpersonal%2Fseptian%5Fivander%5Fkemenkeu%5Fgo%5Fid%2FDocuments%2FBC%20Teluk%20Nibung%2FDKO%2F2%2E%20Februari&amp;viewid=5cc00631%2Df18a%2D4f36%2Dbdc3%2Dabec58a84561&amp;csf=1&amp;FolderCTID=0x012000092491659B222D429C184B8D393BD6E5" rel="noopener noreferrer" target="_blank">Februari</a>
 <a class="month-btn" href="https://kemenkeu-my.sharepoint.com/:f:/g/personal/septian_ivander_kemenkeu_go_id/IgB3E_Hzo_cVSY0wPtPqXOBsAcOUNpioc71Lh-GVzZ2AEx4?e=uwfa8V" rel="noopener noreferrer" target="_blank">Maret</a>
@@ -59,7 +61,7 @@
 <div class="block reveal">
 <h2 class="units-label">Dokumen Kinerja Per Unit Kerja</h2>
 <p class="units-desc">Akses dokumen LIRK dan Laporan Capaian Kinerja masing-masing unit di lingkungan KPPBC TMP C Teluk Nibung.</p>
-<div class="units-grid">
+<div class="units-grid" data-dialog-units>
 <div class="unit-card">
 <div aria-hidden="true" class="unit-emblem">UM</div>
 <div class="unit-body">
@@ -120,7 +122,7 @@
   </div>
   <div class="footer-inner">
     <div class="footer-brand"><a class="nav-brand" href="index.html"><span class="brand-mark">uki</span><span class="brand-name">Bea Cukai<br>Teluk Nibung</span></a><p>Unit Kepatuhan Internal<br>KPPBC TMP C Teluk Nibung.<br>Direktorat Jenderal Bea dan Cukai,<br>Kementerian Keuangan Republik Indonesia.</p></div>
-    <div class="footer-col"><h4>Jelajahi portal</h4><ul><li><a href="index.html">Beranda</a></li><li><a href="lhk.html">Harta kekayaan</a></li><li><a href="pengelolaan-kinerja.html">Pengelolaan kinerja</a></li><li><a href="dialog-kinerja.html">Dialog kinerja</a></li></ul></div>
+    <div class="footer-col"><h4>Jelajahi portal</h4><ul data-menu-nav><li><a href="index.html">Beranda</a></li><li><a href="lhk.html">Harta kekayaan</a></li><li><a href="pengelolaan-kinerja.html">Pengelolaan kinerja</a></li><li><a href="dialog-kinerja.html">Dialog kinerja</a></li></ul></div>
     <div class="footer-col"><h4>Tautan terkait</h4><ul>
       <li><a href="https://beacukai.go.id" target="_blank" rel="noopener noreferrer">Bea Cukai ↗</a></li>
       <li><a href="https://kemenkeu.go.id" target="_blank" rel="noopener noreferrer">Kementerian Keuangan ↗</a></li>
@@ -128,7 +130,7 @@
       <li><a href="https://span.kemenkeu.go.id" target="_blank" rel="noopener noreferrer">SPAN ↗</a></li>
     </ul></div>
   </div>
-  <div class="footer-bottom"><p>© 2026 KPPBC TMP C Teluk Nibung</p><p>Unit Kepatuhan Internal · Kementerian Keuangan RI</p></div>
+  <div class="footer-bottom"><p>© 2026 KPPBC TMP C Teluk Nibung</p><p><a href="admin.html">Admin portal</a> · Kementerian Keuangan RI</p></div>
 </footer>
 </body>
 </html>

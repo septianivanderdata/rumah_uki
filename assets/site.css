@@ -253,3 +253,12 @@ a.month-btn:hover { background: var(--ink); color: white; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
   .reveal.is-pending { opacity: 1; transform: none; }
 }
+
+/* Large managed menus use the same accessible menu at every viewport size. */
+.site-header.compact-nav .nav-links { display: none; }
+.site-header.compact-nav .nav-hamburger { display: block; }
+.site-header.compact-nav .mobile-menu:not([hidden]) { display: block !important; }
+.mobile-menu { max-height: calc(100svh - 90px); overflow-y: auto; }
+.service-heading h3, .service-card p, .art-label, .mobile-menu a { overflow-wrap: anywhere; }
+.art-label { max-width: calc(100% - 44px); }
+.unit-btn, .unit-name, .action-btn { overflow-wrap: anywhere; }
