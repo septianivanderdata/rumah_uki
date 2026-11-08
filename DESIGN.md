@@ -21,8 +21,8 @@ All pages include the same mobile menu, active page indicator, skip link, keyboa
 
 ## Assets
 
-`assets/harbor.jpg` is an illustrative harbor photograph from [Unsplash](https://images.unsplash.com/photo-1578575437130-527eed3abbec). It is not presented as a photograph of Teluk Nibung. Service document illustrations are original inline SVGs. No Bou photography, video, fonts or logo assets are copied.
+`assets/harbor.jpg` is the original of an illustrative harbor photograph; the page serves desaturated WebP copies (`harbor-800/1400/2000.webp`, saturation 0.55 baked in) through `srcset`. It is an illustrative harbor photograph from [Unsplash](https://images.unsplash.com/photo-1578575437130-527eed3abbec). It is not presented as a photograph of Teluk Nibung. Service document illustrations are original inline SVGs. No Bou photography, video, fonts or logo assets are copied.
 
-## Preview
+## Preview and administration
 
-Run `python3 -m http.server 8765 --bind 127.0.0.1` from the project root and open `http://127.0.0.1:8765/`. This is a static site with no build step.
+Run `python3 server.py --port 8765` from the project root and open `http://localhost:8765/`. Menu administration is available at `http://localhost:8765/admin`. The site now uses a Flask API and SQLite for shared menu storage; see README.md for setup, deployment and backup. Static HTML retains its original menu as a fallback when the API is unavailable.

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#101310">
+  <title>Kelola menu – Unit Kepatuhan Internal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="/assets/site.css">
+  <link rel="stylesheet" href="/assets/admin.css">
+  <script src="/assets/admin.js" defer></script>
+  <script src="/assets/dialog-admin.js" defer></script>
+</head>
+<body class="admin-page">
+  <header class="admin-header">
+    <a class="nav-brand" href="/"><span class="brand-mark">uki</span><span class="brand-name">Bea Cukai<br>Teluk Nibung</span></a>
+    <a class="text-link" href="/" target="_blank" rel="noopener">Lihat portal <span aria-hidden="true">↗</span></a>
+  </header>
+  <main class="admin-main">
+    <p id="status" class="admin-status" role="status" aria-live="polite">Menghubungkan ke portal…</p>
+    <section id="authPanel" class="auth-panel" hidden aria-labelledby="authTitle">
+      <div class="auth-copy"><p class="eyebrow">Ruang pengelolaan</p><h1 id="authTitle">Masuk.<br>Kelola dengan mudah.</h1><p id="authDescription">Tambahkan layanan dan perbarui tautan agar pegawai selalu menemukan dokumen yang dibutuhkan.</p><div class="auth-note"><span aria-hidden="true">↗</span><p>Perubahan yang disimpan langsung tersedia untuk pengunjung portal.</p></div></div>
+      <form id="authForm" class="auth-form">
+        <h2 id="authFormTitle">Masuk sebagai admin</h2>
+        <p id="setupNote" hidden>Buat akun admin pertama. Setelah disimpan, hanya admin yang bisa mengubah menu.</p>
+        <label for="username">Nama pengguna</label><input id="username" name="username" required maxlength="60" autocomplete="username" autocapitalize="none" spellcheck="false">
+        <label for="password">Kata sandi</label><input id="password" name="password" type="password" required maxlength="256" autocomplete="current-password">
+        <p id="passwordHint" class="field-hint" hidden>Minimal 12 karakter. Gunakan kata sandi yang hanya Anda ketahui.</p>
+        <div id="confirmGroup" hidden><label for="confirmPassword">Ulangi kata sandi</label><input id="confirmPassword" type="password" maxlength="256" autocomplete="new-password"></div>
+        <button class="admin-button primary" id="authSubmit" type="submit">Masuk</button>
+        <p class="field-hint">Lupa kata sandi? Hubungi pengelola server untuk memulihkan akun Anda.</p>
+      </form>
+    </section>
+    <section id="dashboard" hidden aria-labelledby="dashboardTitle">
+      <div class="dashboard-heading"><div><p class="eyebrow">Panel admin · <span id="adminName"></span></p><h1 id="dashboardTitle">Kelola portal.</h1><p>Atur menu beranda dan tautan dokumen pada halaman Dialog Kinerja.</p></div><button class="admin-button" id="logoutButton" type="button">Keluar</button></div>
+      <div class="admin-tabs" aria-label="Pilih halaman yang dikelola"><button class="admin-button" id="menuTab" type="button" aria-pressed="true">Menu portal</button><button class="admin-button" id="dialogTab" type="button" aria-pressed="false">Dialog Kinerja</button></div>
+      <div id="menuPanel">
+      <div class="admin-toolbar"><div class="menu-summary"><strong id="menuCount">0 menu</strong><span id="activeCount">0 ditampilkan</span></div><div class="toolbar-actions"><button class="admin-button" id="refreshButton" type="button">Muat ulang</button><button class="admin-button primary" id="addButton" type="button">+ Tambah menu</button></div></div>
+      <p class="list-note">Gunakan panah untuk mengubah urutan. Menu yang disembunyikan tetap tersimpan.</p>
+      <div id="menuList" class="admin-menu-list"></div>
+      <div id="emptyState" class="admin-empty" hidden><h2>Belum ada menu.</h2><p>Tambahkan menu pertama untuk memudahkan pengunjung mengakses layanan.</p><button class="admin-button primary" id="emptyAddButton" type="button">Tambah menu</button></div>
+      </div>
+      <div id="dialogPanel" hidden>
+        <div class="admin-toolbar"><div class="menu-summary"><strong id="dialogCount">0 tautan</strong><span id="dialogActiveCount"></span></div><div class="toolbar-actions"><button class="admin-button" id="refreshDialog" type="button">Muat ulang</button><button class="admin-button primary" id="addDialog" type="button">+ Tambah tautan</button></div></div>
+        <label for="dialogFilter">Bagian halaman</label><select id="dialogFilter"><option value="documents">Dokumen dialog kinerja</option><option value="monthly">Folder bulanan</option><option value="units">Dokumen per unit kerja</option></select>
+        <p id="dialogListNote" class="list-note">Kelola dokumen yang ditampilkan pada halaman Dialog Kinerja.</p>
+        <div id="dialogLinkList" class="admin-menu-list"></div>
+        <div id="dialogEmpty" class="admin-empty" hidden><h2>Belum ada tautan di bagian ini.</h2><p>Tambahkan dokumen atau folder yang ingin dibagikan kepada pegawai.</p><button class="admin-button primary" id="emptyAddDialog" type="button">Tambah tautan</button></div>
+      </div>
+    </section>
+  </main>
+  <dialog id="editorDialog" class="editor-dialog" aria-labelledby="editorTitle">
+    <div class="editor-heading"><div><p class="eyebrow">Layanan portal</p><h2 id="editorTitle">Tambah menu</h2></div><button class="dialog-close" id="closeEditor" type="button" aria-label="Tutup formulir">×</button></div>
+    <form id="menuForm">
+      <fieldset id="menuFields">
+        <label for="menuTitle">Nama menu <span aria-hidden="true">*</span></label><input id="menuTitle" name="title" required maxlength="80" placeholder="Contoh: Panduan antikorupsi">
+        <label for="menuUrl">Tautan tujuan <span aria-hidden="true">*</span></label><input id="menuUrl" name="url" required maxlength="2048" placeholder="https://… atau lhk.html" autocapitalize="none" spellcheck="false"><p class="field-hint">Gunakan tautan HTTPS atau halaman yang sudah ada di portal.</p>
+        <label for="menuDescription">Deskripsi</label><textarea id="menuDescription" name="description" rows="3" maxlength="500" placeholder="Jelaskan singkat isi atau tujuan layanan."></textarea>
+        <div class="form-grid"><div><label for="menuCategory">Kategori</label><input id="menuCategory" name="category" maxlength="40" placeholder="Contoh: Pelaporan"></div><div><label for="menuIcon">Ilustrasi kartu</label><select id="menuIcon" name="icon"><option value="document">Dokumen</option><option value="chart">Grafik kinerja</option><option value="dialogue">Dialog</option><option value="link">Tautan</option></select></div></div>
+        <label for="menuPosition">Urutan</label><input id="menuPosition" name="position" type="number" min="0" max="10000" step="1" required><p class="field-hint">Angka lebih kecil tampil lebih dulu.</p>
+        <div class="form-checks"><label><input type="checkbox" id="menuActive" name="active" checked><span>Ditampilkan kepada pengunjung</span></label><label><input type="checkbox" id="menuNav" name="show_nav" checked><span>Tampilkan di navigasi dan footer</span></label><label><input type="checkbox" id="menuCard" name="show_card" checked><span>Tampilkan sebagai kartu layanan di beranda</span></label></div>
+      </fieldset>
+      <div class="menu-preview"><span class="eyebrow">Pratinjau teks kartu</span><h3 id="previewTitle">Nama menu</h3><p id="previewDescription">Deskripsi layanan akan tampil di sini.</p></div>
+      <p id="editorError" class="form-error" role="alert" hidden></p>
+      <div class="editor-actions"><button class="admin-button" id="cancelEditor" type="button">Batal</button><button class="admin-button primary" id="saveMenu" type="submit">Simpan menu</button></div>
+    </form>
+  </dialog>
+  <dialog id="dialogLinkEditor" class="editor-dialog" aria-labelledby="dialogEditorTitle">
+    <div class="editor-heading"><div><p class="eyebrow">Halaman Dialog Kinerja</p><h2 id="dialogEditorTitle">Tambah tautan</h2></div><button class="dialog-close" id="closeDialogEditor" type="button" aria-label="Tutup formulir tautan">×</button></div>
+    <form id="dialogLinkForm">
+      <fieldset id="dialogFields">
+        <label for="linkSection">Bagian halaman</label><select id="linkSection"><option value="documents">Dokumen dialog kinerja</option><option value="monthly">Folder bulanan</option><option value="units">Dokumen per unit kerja</option></select>
+        <div id="linkMonthGroup" hidden><label for="linkMonth">Bulan</label><select id="linkMonth"><option value="1">Januari</option><option value="2">Februari</option><option value="3">Maret</option><option value="4">April</option><option value="5">Mei</option><option value="6">Juni</option><option value="7">Juli</option><option value="8">Agustus</option><option value="9">September</option><option value="10">Oktober</option><option value="11">November</option><option value="12">Desember</option></select><p class="field-hint">Bulan yang sudah ada dikelola melalui tombol Edit pada daftar.</p></div>
+        <div id="linkUnitGroup" hidden><label for="linkUnit">Nama unit kerja</label><input id="linkUnit" maxlength="160" list="unitSuggestions" placeholder="Contoh: Subbagian Umum"><datalist id="unitSuggestions"></datalist></div>
+        <div id="linkTitleGroup"><label for="linkTitle">Nama dokumen</label><input id="linkTitle" maxlength="80" required placeholder="Contoh: Bahan tayang DKO"></div>
+        <label for="linkUrl">Tautan tujuan</label><input id="linkUrl" maxlength="2048" required placeholder="https://…" autocapitalize="none" spellcheck="false"><p class="field-hint" id="linkUrlHint">Gunakan tautan HTTPS atau halaman yang sudah ada di portal.</p>
+        <div id="linkPositionGroup"><label for="linkPosition">Urutan</label><input id="linkPosition" type="number" min="0" max="10000" step="1" required><p class="field-hint">Angka lebih kecil tampil lebih dulu. Folder bulanan mengikuti urutan kalender.</p></div>
+        <div class="form-checks"><label><input id="linkActive" type="checkbox" checked><span>Ditampilkan kepada pengunjung</span></label></div>
+      </fieldset>
+      <p id="dialogEditorError" class="form-error" role="alert" hidden></p>
+      <div class="editor-actions"><button class="admin-button" id="cancelDialogEditor" type="button">Batal</button><button class="admin-button primary" id="saveDialogLink" type="submit">Simpan tautan</button></div>
+    </form>
+  </dialog>
+  <footer class="admin-footer">Unit Kepatuhan Internal · KPPBC TMP C Teluk Nibung</footer>
+</body>
+</html>
