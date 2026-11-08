@@ -21,7 +21,7 @@ All pages include the same mobile menu, active page indicator, skip link, keyboa
 
 ## Assets
 
-`assets/harbor.jpg` is an illustrative harbor photograph from [Unsplash](https://images.unsplash.com/photo-1578575437130-527eed3abbec). It is not presented as a photograph of Teluk Nibung. Service document illustrations are original inline SVGs. No Bou photography, video, fonts or logo assets are copied.
+`assets/harbor.jpg` is the original of an illustrative harbor photograph; the page serves desaturated WebP copies (`harbor-800/1400/2000.webp`, saturation 0.55 baked in) through `srcset`. It is an illustrative harbor photograph from [Unsplash](https://images.unsplash.com/photo-1578575437130-527eed3abbec). It is not presented as a photograph of Teluk Nibung. Service document illustrations are original inline SVGs. No Bou photography, video, fonts or logo assets are copied.
 
 ## Preview and administration
 
